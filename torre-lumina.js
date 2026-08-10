@@ -8,7 +8,7 @@ tabButtons.forEach(btn => {
     tabButtons.forEach(b => b.dataset.active = 'false');
     panels.forEach(p => p.dataset.active = 'false');
     btn.dataset.active = 'true';
-    document.querySelector(`.plan-tab[data-panel="${btn.dataset.tab}"]`).dataset.active = 'true';
+    document.querySelectorAll(`.plan-tab[data-panel="${btn.dataset.tab}"]`).forEach(p => p.dataset.active = 'true');
   });
 });
 
