@@ -37,63 +37,7 @@
   }
 </script>
 
-<style>
-  html { scroll-behavior: smooth; }
-  body { background-color:#0D0F13; }
-
-  .bp-grid {
-    background-image:
-      linear-gradient(rgba(199,166,103,0.10) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(199,166,103,0.10) 1px, transparent 1px);
-    background-size: 48px 48px;
-  }
-
-  .bp-fade {
-    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
-  }
-
-  .eyebrow {
-    letter-spacing: 0.28em;
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(18px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .tab-btn[data-active="true"] {
-    color: #0D0F13;
-    background-color: #C7A667;
-  }
-  .tab-btn[data-active="true"] .tab-sub { color: #0D0F13; opacity: 0.7; }
-
-  .plan-tab { display: none; }
-  .plan-tab[data-active="true"] { display: grid; }
-
-  .unit-cell {
-    transition: transform 0.15s ease, filter 0.15s ease;
-  }
-  .unit-cell:hover {
-    transform: scale(1.18);
-    filter: brightness(1.15);
-    z-index: 10;
-  }
-
-  input:focus, textarea:focus, select:focus { outline: none; }
-
-  ::selection { background: #C7A667; color: #0D0F13; }
-
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    .reveal { transition: none; opacity: 1; transform: none; }
-  }
-</style>
+<link rel="stylesheet" href="torre-lumina.css">
 </head>
 
 <body class="font-body bg-bg text-ink antialiased">
@@ -102,7 +46,7 @@
 <header class="fixed top-0 inset-x-0 z-50 border-b border-hairline/70 bg-bg/80 backdrop-blur-md">
   <div class="max-w-7xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
     <a href="#hero" class="font-display text-lg tracking-wide text-ink">
-      Torre <span class="text-gold">Lumina</span>
+      One Twenty <span class="text-gold">Signature</span>
     </a>
     <nav class="hidden md:flex items-center gap-8 text-sm text-muted">
       <a href="#amenities" class="hover:text-ink transition-colors">Amenities</a>
@@ -111,7 +55,7 @@
       <a href="#avance" class="hover:text-ink transition-colors">Avance de obra</a>
       <a href="#contacto" class="hover:text-ink transition-colors">Contacto</a>
     </nav>
-    <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Torre%20Lumina"
+    <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20One%20Twenty%20Signature"
        target="_blank" rel="noopener"
        class="inline-flex items-center gap-2 rounded-full bg-emerald text-bg text-sm font-semibold px-4 py-2 hover:bg-goldbright transition-colors">
       <i data-lucide="message-circle" class="w-4 h-4"></i>
@@ -123,7 +67,7 @@
 <!-- ============ HERO ============ -->
 <section id="hero" class="relative overflow-hidden pt-16">
   <img src="https://images.unsplash.com/photo-1599713201540-38d1cc590571?auto=format&fit=crop&w=2000&q=80"
-       alt="Torre Lumina, fachada de vidrio nocturna"
+       alt="One Twenty Signature, fachada de vidrio nocturna"
        class="absolute inset-0 w-full h-full object-cover opacity-40">
   <div class="absolute inset-0 bp-grid bp-fade mix-blend-overlay opacity-60"></div>
   <div class="absolute inset-0 bg-gradient-to-b from-bg/60 via-bg/80 to-bg"></div>
@@ -133,7 +77,7 @@
     <div class="grid lg:grid-cols-12 gap-10 items-end">
       <div class="lg:col-span-8">
         <p class="reveal eyebrow text-gold text-xs md:text-sm font-mono uppercase mb-6">
-          Preventa en pozo — Palermo, Buenos Aires
+          Preventa en pozo — Brickell, Miami
         </p>
         <h1 class="reveal font-display font-light text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] text-ink">
           La luz que
@@ -143,12 +87,12 @@
           se construyó.
         </h1>
         <p class="reveal max-w-xl mt-8 text-muted text-base md:text-lg leading-relaxed">
-          12 pisos, 42 unidades y un plano que hoy es tuyo a valor de pozo. Torre Lumina
+          40, 460 a 470 unidades residenciales y un plano que hoy es tuyo a valor de pozo. One Twenty Signature
           se entrega en 2027 con financiación propia y anticipo del 30%.
         </p>
 
         <div class="reveal mt-10 flex flex-wrap items-center gap-4">
-          <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Torre%20Lumina"
+          <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20One%20Twenty%20Signature"
              target="_blank" rel="noopener"
              class="inline-flex items-center gap-3 rounded-full bg-emerald text-bg font-semibold px-7 py-4 hover:bg-goldbright transition-colors">
             <i data-lucide="message-circle" class="w-5 h-5"></i>
@@ -168,7 +112,7 @@
           <dl class="space-y-3 text-sm">
             <div class="flex justify-between border-b border-hairline/70 pb-3">
               <dt class="text-muted">Ubicación</dt>
-              <dd class="text-ink text-right">Palermo Chico, CABA</dd>
+              <dd class="text-ink text-right">Brickell, Miami</dd>
             </div>
             <div class="flex justify-between border-b border-hairline/70 pb-3">
               <dt class="text-muted">Entrega</dt>
@@ -178,10 +122,9 @@
               <dt class="text-muted">Anticipo</dt>
               <dd class="text-gold font-semibold">30%</dd>
             </div>
-            <div class="flex justify-between">
-              <dt class="text-muted">Superficie desde</dt>
-              <dd class="text-ink">32 m²</dd>
-            </div>
+            <div class="flex justify-between border-b border-hairline/70 pb-3">
+              <dt class="text-muted">Pisos</dt>
+              <dd class="text-ink">40</dd>
           </dl>
         </div>
       </div>
@@ -206,7 +149,7 @@
         <p class="text-xs text-muted uppercase tracking-wider mt-1">Pisos</p>
       </div>
       <div class="py-6 md:py-8 px-4 text-center md:text-left">
-        <p class="font-mono text-2xl md:text-3xl text-gold">42</p>
+        <p class="font-mono text-2xl md:text-3xl text-gold">460</p>
         <p class="text-xs text-muted uppercase tracking-wider mt-1">Unidades</p>
       </div>
       <div class="col-span-2 md:col-span-1 py-6 md:py-8 px-4 text-center md:text-left">
@@ -231,20 +174,20 @@
     <!-- Amenity card with photo -->
     <div class="reveal group rounded-xl border border-hairline bg-surface overflow-hidden hover:border-gold/60 transition-colors">
       <div class="aspect-[4/3] overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1644027615819-994ddc7cf765?auto=format&fit=crop&w=800&q=80"
-             alt="Piscina rooftop de Torre Lumina" loading="lazy"
+        <img src="/Proyecto-Kolly/src/ssss.jpeg"
+             alt="Piscina rooftop de One Twenty Signature" loading="lazy"
              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
       </div>
       <div class="p-6">
         <i data-lucide="waves" class="w-5 h-5 text-gold mb-3"></i>
         <h3 class="font-medium text-ink">Piscina rooftop</h3>
-        <p class="text-sm text-muted mt-2 leading-relaxed">Deck climatizado en el piso 12 con vista abierta a la ciudad.</p>
+        <p class="text-sm text-muted mt-2 leading-relaxed">Deck climatizado en el piso X con vista abierta a la ciudad.</p>
       </div>
     </div>
     <div class="reveal group rounded-xl border border-hairline bg-surface overflow-hidden hover:border-gold/60 transition-colors">
       <div class="aspect-[4/3] overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1758957646695-ec8bce3df462?auto=format&fit=crop&w=800&q=80"
-             alt="Gimnasio equipado de Torre Lumina" loading="lazy"
+        <img src="/Proyecto-Kolly/src/12.jpeg"
+             alt="Gimnasio equipado de One Twenty Signature" loading="lazy"
              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
       </div>
       <div class="p-6">
@@ -255,8 +198,8 @@
     </div>
     <div class="reveal group rounded-xl border border-hairline bg-surface overflow-hidden hover:border-gold/60 transition-colors">
       <div class="aspect-[4/3] overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1758448755856-01d3add0177b?auto=format&fit=crop&w=800&q=80"
-             alt="SUM y lounge de Torre Lumina" loading="lazy"
+        <img src="/Proyecto-Kolly/src/"
+             alt="SUM y lounge de One Twenty Signature" loading="lazy"
              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
       </div>
       <div class="p-6">
@@ -591,83 +534,7 @@
   </div>
 </footer>
 
-<script>
-  lucide.createIcons();
-
-  // ---- Tabs (tipologías) ----
-  const tabButtons = document.querySelectorAll('.tab-btn');
-  const panels = document.querySelectorAll('.plan-tab');
-  tabButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      tabButtons.forEach(b => b.dataset.active = 'false');
-      panels.forEach(p => p.dataset.active = 'false');
-      btn.dataset.active = 'true';
-      document.querySelector(`.plan-tab[data-panel="${btn.dataset.tab}"]`).dataset.active = 'true';
-    });
-  });
-
-  // ---- Elevación: matriz de pisos ----
-  const STATUS = {
-    disponible: { color: 'bg-emerald', label: 'Disponible' },
-    reservado:  { color: 'bg-amber',   label: 'Reservado' },
-    vendido:    { color: 'bg-sold',    label: 'Vendido' },
-  };
-
-  // 12 pisos, unidades A–D. Pisos bajos con mayor % vendido (avance 40%).
-  const floors = [
-    { n: 12, units: ['disponible','disponible','reservado','disponible'] },
-    { n: 11, units: ['disponible','reservado','disponible','disponible'] },
-    { n: 10, units: ['reservado','disponible','disponible','reservado'] },
-    { n: 9,  units: ['disponible','disponible','reservado','disponible'] },
-    { n: 8,  units: ['reservado','disponible','reservado','disponible'] },
-    { n: 7,  units: ['disponible','reservado','reservado','disponible'] },
-    { n: 6,  units: ['reservado','vendido','disponible','reservado'] },
-    { n: 5,  units: ['vendido','reservado','vendido','disponible'] },
-    { n: 4,  units: ['vendido','vendido','reservado','vendido'] },
-    { n: 3,  units: ['vendido','vendido','vendido','reservado'] },
-    { n: 2,  units: ['vendido','vendido','vendido','vendido'] },
-    { n: 1,  units: ['vendido','vendido','vendido','vendido'] },
-  ];
-
-  const elevation = document.getElementById('elevation');
-  const letters = ['A','B','C','D'];
-
-  floors.forEach(floor => {
-    const row = document.createElement('div');
-    row.className = 'flex items-center gap-3';
-
-    const label = document.createElement('span');
-    label.className = 'font-mono text-[11px] text-muted w-9 shrink-0 text-right';
-    label.textContent = 'P' + floor.n;
-    row.appendChild(label);
-
-    const cells = document.createElement('div');
-    cells.className = 'flex-1 grid grid-cols-4 gap-1.5';
-
-    floor.units.forEach((status, i) => {
-      const cell = document.createElement('div');
-      const s = STATUS[status];
-      cell.className = `unit-cell ${s.color} h-6 md:h-7 rounded-[3px] cursor-pointer`;
-      cell.title = `Piso ${floor.n} · Unidad ${letters[i]} · ${s.label}`;
-      cells.appendChild(cell);
-    });
-
-    row.appendChild(cells);
-    elevation.appendChild(row);
-  });
-
-  // ---- Scroll reveal ----
-  const revealEls = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12 });
-  revealEls.forEach(el => io.observe(el));
-</script>
+<script src="torre-lumina.js"></script>
 
 </body>
 </html>
