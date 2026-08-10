@@ -53,3 +53,26 @@ input:focus, textarea:focus, select:focus { outline: none; }
   html { scroll-behavior: auto; }
   .reveal { transition: none; opacity: 1; transform: none; }
 }
+.office-slideshow img {
+  position: absolute;
+  inset: 0;
+  animation: kenBurnsSeamless 20s infinite ease-in-out;
+}
+.office-slideshow img:nth-child(1) {
+  animation-delay: 0s;
+}
+.office-slideshow img:nth-child(2) {
+  animation-delay: -10s;
+}
+@keyframes kenBurnsSeamless {
+ 
+  0%   { opacity: 1; transform: scale(1); }   
+  5%   { transform: scale(1.02); }            
+  40%  { transform: scale(1.12); }           
+  45%  { opacity: 1; transform: scale(1.15); } 
+  
+  
+  50%  { opacity: 0; transform: scale(1.15); } 
+  95%  { opacity: 0; transform: scale(1); }   
+  100% { opacity: 1; transform: scale(1); }   
+}
