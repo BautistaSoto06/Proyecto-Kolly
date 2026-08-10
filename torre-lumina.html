@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Torre Lumina — Preventa en Pozo</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          bg: '#0D0F13',
+          surface: '#171A21',
+          surface2: '#1F232C',
+          hairline: '#2C313D',
+          ink: '#E9E6E0',
+          muted: '#9AA0AC',
+          gold: '#C7A667',
+          goldbright: '#E7CC96',
+          emerald: '#34D399',
+          amber: '#E8A33D',
+          sold: '#4A5060',
+        },
+        fontFamily: {
+          display: ['Fraunces', 'serif'],
+          body: ['Manrope', 'sans-serif'],
+          mono: ['Space Mono', 'monospace'],
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background-color:#0D0F13; }
+
+  .bp-grid {
+    background-image:
+      linear-gradient(rgba(199,166,103,0.10) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(199,166,103,0.10) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .bp-fade {
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+  }
+
+  .eyebrow {
+    letter-spacing: 0.28em;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .tab-btn[data-active="true"] {
+    color: #0D0F13;
+    background-color: #C7A667;
+  }
+  .tab-btn[data-active="true"] .tab-sub { color: #0D0F13; opacity: 0.7; }
+
+  .plan-tab { display: none; }
+  .plan-tab[data-active="true"] { display: grid; }
+
+  .unit-cell {
+    transition: transform 0.15s ease, filter 0.15s ease;
+  }
+  .unit-cell:hover {
+    transform: scale(1.18);
+    filter: brightness(1.15);
+    z-index: 10;
+  }
+
+  input:focus, textarea:focus, select:focus { outline: none; }
+
+  ::selection { background: #C7A667; color: #0D0F13; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { transition: none; opacity: 1; transform: none; }
+  }
+</style>
+</head>
+
+<body class="font-body bg-bg text-ink antialiased">
+
+<!-- ============ NAV ============ -->
+<header class="fixed top-0 inset-x-0 z-50 border-b border-hairline/70 bg-bg/80 backdrop-blur-md">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
+    <a href="#hero" class="font-display text-lg tracking-wide text-ink">
+      Torre <span class="text-gold">Lumina</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-8 text-sm text-muted">
+      <a href="#amenities" class="hover:text-ink transition-colors">Amenities</a>
+      <a href="#tipologias" class="hover:text-ink transition-colors">Unidades</a>
+      <a href="#elevacion" class="hover:text-ink transition-colors">Disponibilidad</a>
+      <a href="#avance" class="hover:text-ink transition-colors">Avance de obra</a>
+      <a href="#contacto" class="hover:text-ink transition-colors">Contacto</a>
+    </nav>
+    <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Torre%20Lumina"
+       target="_blank" rel="noopener"
+       class="inline-flex items-center gap-2 rounded-full bg-emerald text-bg text-sm font-semibold px-4 py-2 hover:bg-goldbright transition-colors">
+      <i data-lucide="message-circle" class="w-4 h-4"></i>
+      <span class="hidden sm:inline">WhatsApp</span>
+    </a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="hero" class="relative overflow-hidden pt-16">
+  <img src="https://images.unsplash.com/photo-1599713201540-38d1cc590571?auto=format&fit=crop&w=2000&q=80"
+       alt="Torre Lumina, fachada de vidrio nocturna"
+       class="absolute inset-0 w-full h-full object-cover opacity-40">
+  <div class="absolute inset-0 bp-grid bp-fade mix-blend-overlay opacity-60"></div>
+  <div class="absolute inset-0 bg-gradient-to-b from-bg/60 via-bg/80 to-bg"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-bg via-bg/50 to-transparent"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6 md:px-10 pt-20 pb-16 md:pt-32 md:pb-24">
+    <div class="grid lg:grid-cols-12 gap-10 items-end">
+      <div class="lg:col-span-8">
+        <p class="reveal eyebrow text-gold text-xs md:text-sm font-mono uppercase mb-6">
+          Preventa en pozo — Palermo, Buenos Aires
+        </p>
+        <h1 class="reveal font-display font-light text-5xl sm:text-6xl md:text-7xl lg:text-8xl leading-[0.95] text-ink">
+          La luz que
+          <br>
+          <span class="italic text-gold">todavía</span> no
+          <br>
+          se construyó.
+        </h1>
+        <p class="reveal max-w-xl mt-8 text-muted text-base md:text-lg leading-relaxed">
+          12 pisos, 42 unidades y un plano que hoy es tuyo a valor de pozo. Torre Lumina
+          se entrega en 2027 con financiación propia y anticipo del 30%.
+        </p>
+
+        <div class="reveal mt-10 flex flex-wrap items-center gap-4">
+          <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Torre%20Lumina"
+             target="_blank" rel="noopener"
+             class="inline-flex items-center gap-3 rounded-full bg-emerald text-bg font-semibold px-7 py-4 hover:bg-goldbright transition-colors">
+            <i data-lucide="message-circle" class="w-5 h-5"></i>
+            Consultar por WhatsApp
+          </a>
+          <a href="#tipologias"
+             class="inline-flex items-center gap-2 rounded-full border border-hairline text-ink px-7 py-4 hover:border-gold hover:text-gold transition-colors">
+            Ver tipologías
+            <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-4">
+        <div class="reveal rounded-2xl border border-hairline bg-surface/60 backdrop-blur-sm p-6">
+          <p class="font-mono text-xs text-muted uppercase tracking-widest mb-4">Ficha rápida</p>
+          <dl class="space-y-3 text-sm">
+            <div class="flex justify-between border-b border-hairline/70 pb-3">
+              <dt class="text-muted">Ubicación</dt>
+              <dd class="text-ink text-right">Palermo Chico, CABA</dd>
+            </div>
+            <div class="flex justify-between border-b border-hairline/70 pb-3">
+              <dt class="text-muted">Entrega</dt>
+              <dd class="text-ink">Diciembre 2027</dd>
+            </div>
+            <div class="flex justify-between border-b border-hairline/70 pb-3">
+              <dt class="text-muted">Anticipo</dt>
+              <dd class="text-gold font-semibold">30%</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="text-muted">Superficie desde</dt>
+              <dd class="text-ink">32 m²</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ METRICS BAR ============ -->
+<section class="border-y border-hairline bg-surface">
+  <div class="max-w-7xl mx-auto px-6 md:px-10">
+    <div class="grid grid-cols-2 md:grid-cols-5 divide-x divide-hairline">
+      <div class="py-6 md:py-8 px-4 text-center md:text-left">
+        <p class="font-mono text-2xl md:text-3xl text-gold">30%</p>
+        <p class="text-xs text-muted uppercase tracking-wider mt-1">Anticipo</p>
+      </div>
+      <div class="py-6 md:py-8 px-4 text-center md:text-left">
+        <p class="font-mono text-2xl md:text-3xl text-gold">2027</p>
+        <p class="text-xs text-muted uppercase tracking-wider mt-1">Entrega</p>
+      </div>
+      <div class="py-6 md:py-8 px-4 text-center md:text-left">
+        <p class="font-mono text-2xl md:text-3xl text-gold">12</p>
+        <p class="text-xs text-muted uppercase tracking-wider mt-1">Pisos</p>
+      </div>
+      <div class="py-6 md:py-8 px-4 text-center md:text-left">
+        <p class="font-mono text-2xl md:text-3xl text-gold">42</p>
+        <p class="text-xs text-muted uppercase tracking-wider mt-1">Unidades</p>
+      </div>
+      <div class="col-span-2 md:col-span-1 py-6 md:py-8 px-4 text-center md:text-left">
+        <p class="font-mono text-2xl md:text-3xl text-gold">32 m²</p>
+        <p class="text-xs text-muted uppercase tracking-wider mt-1">Desde</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AMENITIES ============ -->
+<section id="amenities" class="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-28">
+  <div class="reveal max-w-2xl mb-14">
+    <p class="eyebrow text-gold text-xs font-mono uppercase mb-4">Amenities</p>
+    <h2 class="font-display text-3xl md:text-5xl font-light leading-tight">
+      Todo lo que un plano
+      <span class="italic text-gold">todavía</span> no muestra.
+    </h2>
+  </div>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+    <!-- Amenity card with photo -->
+    <div class="reveal group rounded-xl border border-hairline bg-surface overflow-hidden hover:border-gold/60 transition-colors">
+      <div class="aspect-[4/3] overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1644027615819-994ddc7cf765?auto=format&fit=crop&w=800&q=80"
+             alt="Piscina rooftop de Torre Lumina" loading="lazy"
+             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+      </div>
+      <div class="p-6">
+        <i data-lucide="waves" class="w-5 h-5 text-gold mb-3"></i>
+        <h3 class="font-medium text-ink">Piscina rooftop</h3>
+        <p class="text-sm text-muted mt-2 leading-relaxed">Deck climatizado en el piso 12 con vista abierta a la ciudad.</p>
+      </div>
+    </div>
+    <div class="reveal group rounded-xl border border-hairline bg-surface overflow-hidden hover:border-gold/60 transition-colors">
+      <div class="aspect-[4/3] overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1758957646695-ec8bce3df462?auto=format&fit=crop&w=800&q=80"
+             alt="Gimnasio equipado de Torre Lumina" loading="lazy"
+             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+      </div>
+      <div class="p-6">
+        <i data-lucide="dumbbell" class="w-5 h-5 text-gold mb-3"></i>
+        <h3 class="font-medium text-ink">Gimnasio equipado</h3>
+        <p class="text-sm text-muted mt-2 leading-relaxed">Sala funcional y de musculación, doble altura y ventilación natural.</p>
+      </div>
+    </div>
+    <div class="reveal group rounded-xl border border-hairline bg-surface overflow-hidden hover:border-gold/60 transition-colors">
+      <div class="aspect-[4/3] overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1758448755856-01d3add0177b?auto=format&fit=crop&w=800&q=80"
+             alt="SUM y lounge de Torre Lumina" loading="lazy"
+             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+      </div>
+      <div class="p-6">
+        <i data-lucide="users" class="w-5 h-5 text-gold mb-3"></i>
+        <h3 class="font-medium text-ink">SUM con terraza</h3>
+        <p class="text-sm text-muted mt-2 leading-relaxed">Salón de usos múltiples con cocina integrada para eventos privados.</p>
+      </div>
+    </div>
+    <div class="reveal group rounded-xl border border-hairline bg-surface p-6 hover:border-gold/60 transition-colors">
+      <i data-lucide="flame" class="w-6 h-6 text-gold mb-5"></i>
+      <h3 class="font-medium text-ink">Parrillas individuales</h3>
+      <p class="text-sm text-muted mt-2 leading-relaxed">Espacios de asado con reserva por unidad en la terraza principal.</p>
+    </div>
+    <div class="reveal group rounded-xl border border-hairline bg-surface p-6 hover:border-gold/60 transition-colors">
+      <i data-lucide="briefcase" class="w-6 h-6 text-gold mb-5"></i>
+      <h3 class="font-medium text-ink">Coworking</h3>
+      <p class="text-sm text-muted mt-2 leading-relaxed">Salas privadas y puestos compartidos con conectividad de fibra óptica.</p>
+    </div>
+    <div class="reveal group rounded-xl border border-hairline bg-surface p-6 hover:border-gold/60 transition-colors">
+      <i data-lucide="shield-check" class="w-6 h-6 text-gold mb-5"></i>
+      <h3 class="font-medium text-ink">Seguridad 24 hs</h3>
+      <p class="text-sm text-muted mt-2 leading-relaxed">Portería permanente, circuito cerrado y acceso biométrico.</p>
+    </div>
+    <div class="reveal group rounded-xl border border-hairline bg-surface p-6 hover:border-gold/60 transition-colors">
+      <i data-lucide="car" class="w-6 h-6 text-gold mb-5"></i>
+      <h3 class="font-medium text-ink">Cocheras propias</h3>
+      <p class="text-sm text-muted mt-2 leading-relaxed">Subsuelo con cochera fija opcional y bicicletero techado.</p>
+    </div>
+    <div class="reveal group rounded-xl border border-hairline bg-surface p-6 hover:border-gold/60 transition-colors">
+      <i data-lucide="sun" class="w-6 h-6 text-gold mb-5"></i>
+      <h3 class="font-medium text-ink">Solárium</h3>
+      <p class="text-sm text-muted mt-2 leading-relaxed">Reposeras y jardín seco en la cubierta, junto a la piscina.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TIPOLOGÍAS (TABS) ============ -->
+<section id="tipologias" class="border-t border-hairline bg-surface/40">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-28">
+    <div class="reveal max-w-2xl mb-12">
+      <p class="eyebrow text-gold text-xs font-mono uppercase mb-4">Tipologías</p>
+      <h2 class="font-display text-3xl md:text-5xl font-light leading-tight">
+        Tres formas de vivir
+        <span class="italic text-gold">la misma</span> torre.
+      </h2>
+    </div>
+
+    <!-- Tab buttons -->
+    <div class="reveal inline-flex flex-wrap gap-2 rounded-full border border-hairline bg-surface p-1.5 mb-10">
+      <button data-tab="mono" data-active="true"
+        class="tab-btn rounded-full px-5 py-2.5 text-sm font-medium text-muted transition-colors">
+        Monoambiente
+      </button>
+      <button data-tab="dos" data-active="false"
+        class="tab-btn rounded-full px-5 py-2.5 text-sm font-medium text-muted transition-colors">
+        2 Ambientes
+      </button>
+      <button data-tab="tres" data-active="false"
+        class="tab-btn rounded-full px-5 py-2.5 text-sm font-medium text-muted transition-colors">
+        3 Ambientes
+      </button>
+    </div>
+
+    <!-- Panel: Monoambiente -->
+    <div class="plan-tab grid lg:grid-cols-2 gap-10 items-center" data-panel="mono" data-active="true">
+      <div class="rounded-2xl border border-dashed border-hairline bp-grid aspect-[4/3] flex flex-col items-center justify-center gap-3 text-center px-6">
+        <i data-lucide="ruler" class="w-7 h-7 text-gold"></i>
+        <p class="font-mono text-xs text-muted uppercase tracking-widest">Espacio reservado para plano</p>
+        <p class="font-mono text-[11px] text-muted/70">Monoambiente · 32–38 m²</p>
+      </div>
+      <div>
+        <h3 class="font-display text-3xl font-light mb-6">Monoambiente</h3>
+        <dl class="space-y-4 font-mono text-sm">
+          <div class="flex justify-between border-b border-hairline pb-3">
+            <dt class="text-muted">Superficie</dt><dd class="text-ink">32 a 38 m²</dd>
+          </div>
+          <div class="flex justify-between border-b border-hairline pb-3">
+            <dt class="text-muted">Ambientes</dt><dd class="text-ink">1 (integrado)</dd>
+          </div>
+          <div class="flex justify-between border-b border-hairline pb-3">
+            <dt class="text-muted">Orientación</dt><dd class="text-ink">Norte / Este</dd>
+          </div>
+          <div class="flex justify-between border-b border-hairline pb-3">
+            <dt class="text-muted">Balcón</dt><dd class="text-ink">Sí, aterrazado</dd>
+          </div>
+          <div class="flex justify-between">
+            <dt class="text-muted">Precio de pozo desde</dt><dd class="text-gold">USD 78.000</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <!-- Panel: 2 Ambientes -->
+    <div class="plan-tab grid lg:grid-cols-2 gap-10 items-center" data-panel="dos" data-active="false">
+      <div class="rounded-2xl border border-dashed border-hairline bp-grid aspect-[4/3] flex flex-col items-center justify-center gap-3 text-center px-6">
+        <i data-lucide="ruler" class="w-7 h-7 text-gold"></i>
+        <p class="font-mono text-xs text-muted uppercase tracking-widest">Espacio reservado para plano</p>
+        <p class="font-mono text-[11px] text-muted/70">2 Ambientes · 48–58 m²</p>
+      </div>
+      <div>
+        <h3 class="font-display text-3xl font-light mb-6">2 Ambientes</h3>
+        <dl class="space-y-4 font-mono text-sm">
+          <div class="flex justify-between border-b border-hairline pb-3">
+            <dt class="text-muted">Superficie</dt><dd class="text-ink">48 a 58 m²</dd>
+          </div>
+          <div class="flex justify-between border-b border-hairline pb-3">
+            <dt class="text-muted">Ambientes</dt><dd class="text-ink">2 (dormitorio separado)</dd>
+          </div>
+          <div class="flex justify-between border-b border-hairline pb-3">
+            <dt class="text-muted">Orientación</dt><dd class="text-ink">Norte / Frente</dd>
+          </div>
+          <div class="flex justify-between border-b border-hairline pb-3">
+            <dt class="text-muted">Balcón</dt><dd class="text-ink">Sí, con parrilla individual</dd>
+          </div>
+          <div class="flex justify-between">
+            <dt class="text-muted">Precio de pozo desde</dt><dd class="text-gold">USD 112.000</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <!-- Panel: 3 Ambientes -->
+    <div class="plan-tab grid lg:grid-cols-2 gap-10 items-center" data-panel="tres" data-active="false">
+      <div class="rounded-2xl border border-dashed border-hairline bp-grid aspect-[4/3] flex flex-col items-center justify-center gap-3 text-center px-6">
+        <i data-lucide="ruler" class="w-7 h-7 text-gold"></i>
+        <p class="font-mono text-xs text-muted uppercase tracking-widest">Espacio reservado para plano</p>
+        <p class="font-mono text-[11px] text-muted/70">3 Ambientes · 68–85 m²</p>
+      </div>
+      <div>
+        <h3 class="font-display text-3xl font-light mb-6">3 Ambientes</h3>
+        <dl class="space-y-4 font-mono text-sm">
+          <div class="flex justify-between border-b border-hairline pb-3">
+            <dt class="text-muted">Superficie</dt><dd class="text-ink">68 a 85 m²</dd>
+          </div>
+          <div class="flex justify-between border-b border-hairline pb-3">
+            <dt class="text-muted">Ambientes</dt><dd class="text-ink">3 (2 dormitorios)</dd>
+          </div>
+          <div class="flex justify-between border-b border-hairline pb-3">
+            <dt class="text-muted">Orientación</dt><dd class="text-ink">Contrafrente luminoso</dd>
+          </div>
+          <div class="flex justify-between border-b border-hairline pb-3">
+            <dt class="text-muted">Balcón</dt><dd class="text-ink">Terraza propia (últimos pisos)</dd>
+          </div>
+          <div class="flex justify-between">
+            <dt class="text-muted">Precio de pozo desde</dt><dd class="text-gold">USD 165.000</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ELEVACIÓN / MATRIZ DE PISOS ============ -->
+<section id="elevacion" class="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-28">
+  <div class="reveal max-w-2xl mb-4">
+    <p class="eyebrow text-gold text-xs font-mono uppercase mb-4">Disponibilidad</p>
+    <h2 class="font-display text-3xl md:text-5xl font-light leading-tight">
+      La torre, piso
+      <span class="italic text-gold">por</span> piso.
+    </h2>
+    <p class="text-muted mt-5 leading-relaxed">
+      Cada celda representa una unidad real de Torre Lumina. Pasá el cursor para identificar su ubicación en el edificio.
+    </p>
+  </div>
+
+  <div class="reveal mt-12 rounded-2xl border border-hairline bg-surface p-6 md:p-10">
+    <!-- legend -->
+    <div class="flex flex-wrap gap-6 mb-10 font-mono text-xs uppercase tracking-wider">
+      <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-emerald inline-block"></span> Disponible</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-amber inline-block"></span> Reservado</div>
+      <div class="flex items-center gap-2"><span class="w-3 h-3 rounded-sm bg-sold inline-block"></span> Vendido</div>
+    </div>
+
+    <!-- roofline -->
+    <div class="h-px bg-gold/60 mb-1"></div>
+    <p class="font-mono text-[10px] text-gold/70 text-right mb-4">azotea &amp; rooftop</p>
+
+    <!-- floors -->
+    <div id="elevation" class="space-y-1.5"></div>
+
+    <!-- ground line -->
+    <div class="h-px bg-hairline mt-4 mb-1"></div>
+    <p class="font-mono text-[10px] text-muted text-center">PB — acceso e ingreso peatonal</p>
+  </div>
+</section>
+
+<!-- ============ AVANCE DE OBRA ============ -->
+<section id="avance" class="border-t border-hairline bg-surface/40">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-28">
+    <div class="reveal max-w-2xl mb-12">
+      <p class="eyebrow text-gold text-xs font-mono uppercase mb-4">Avance de obra</p>
+      <h2 class="font-display text-3xl md:text-5xl font-light leading-tight">
+        Lo que hoy es pozo,
+        <span class="italic text-gold">ya</span> es estructura.
+      </h2>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-10 items-center">
+      <div class="reveal rounded-2xl overflow-hidden border border-hairline aspect-[4/3]">
+        <img src="https://images.unsplash.com/photo-1609867271967-a82f85c48531?auto=format&fit=crop&w=1200&q=80"
+             alt="Obra en construcción de Torre Lumina" loading="lazy"
+             class="w-full h-full object-cover">
+      </div>
+
+      <div class="reveal">
+        <div class="flex items-end justify-between mb-3">
+          <span class="font-mono text-sm text-muted uppercase tracking-widest">Progreso general</span>
+          <span class="font-display text-4xl text-gold">40%</span>
+        </div>
+        <div class="h-3 w-full rounded-full bg-surface2 border border-hairline overflow-hidden">
+          <div class="h-full rounded-full bg-gradient-to-r from-gold to-emerald" style="width:40%"></div>
+        </div>
+
+        <!-- phase markers -->
+        <div class="grid grid-cols-5 gap-2 mt-8 font-mono text-[11px] md:text-xs uppercase tracking-wide">
+          <div class="text-center">
+            <div class="h-2 w-2 rounded-full bg-emerald mx-auto mb-2"></div>
+            <p class="text-ink">Excavación</p>
+            <p class="text-muted/70 mt-1">Completa</p>
+          </div>
+          <div class="text-center">
+            <div class="h-2 w-2 rounded-full bg-gold mx-auto mb-2 ring-4 ring-gold/20"></div>
+            <p class="text-gold">Estructura</p>
+            <p class="text-muted/70 mt-1">En curso</p>
+          </div>
+          <div class="text-center opacity-50">
+            <div class="h-2 w-2 rounded-full bg-hairline mx-auto mb-2"></div>
+            <p class="text-ink">Mampostería</p>
+            <p class="text-muted/70 mt-1">Próxima</p>
+          </div>
+          <div class="text-center opacity-50">
+            <div class="h-2 w-2 rounded-full bg-hairline mx-auto mb-2"></div>
+            <p class="text-ink">Terminaciones</p>
+            <p class="text-muted/70 mt-1">2026</p>
+          </div>
+          <div class="text-center opacity-50">
+            <div class="h-2 w-2 rounded-full bg-hairline mx-auto mb-2"></div>
+            <p class="text-ink">Entrega</p>
+            <p class="text-muted/70 mt-1">2027</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER / CONTACTO ============ -->
+<footer id="contacto" class="border-t border-hairline">
+  <div class="rounded-none overflow-hidden relative h-56 md:h-72">
+    <img src="https://images.unsplash.com/photo-1761535315385-219131cb53e6?auto=format&fit=crop&w=2000&q=80"
+         alt="Fachada de Torre Lumina" loading="lazy"
+         class="absolute inset-0 w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-bg via-bg/60 to-bg/10"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-24">
+    <div class="grid lg:grid-cols-2 gap-14">
+      <div>
+        <p class="eyebrow text-gold text-xs font-mono uppercase mb-4">Contacto</p>
+        <h2 class="font-display text-3xl md:text-4xl font-light leading-tight mb-6">
+          Reservá tu unidad
+          <span class="italic text-gold">a valor</span> de pozo.
+        </h2>
+        <p class="text-muted leading-relaxed mb-8 max-w-md">
+          Completá el formulario y un asesor de Torre Lumina te contacta en menos de 24 hs,
+          o escribinos directo por WhatsApp.
+        </p>
+
+        <a href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20Torre%20Lumina"
+           target="_blank" rel="noopener"
+           class="inline-flex items-center gap-3 rounded-full bg-emerald text-bg font-semibold px-7 py-4 hover:bg-goldbright transition-colors mb-10">
+          <i data-lucide="message-circle" class="w-5 h-5"></i>
+          Hablar por WhatsApp
+        </a>
+
+        <dl class="space-y-4 font-mono text-sm">
+          <div class="flex items-center gap-3 text-muted">
+            <i data-lucide="map-pin" class="w-4 h-4 text-gold"></i> Av. Libertador 4300, Palermo, CABA
+          </div>
+          <div class="flex items-center gap-3 text-muted">
+            <i data-lucide="phone" class="w-4 h-4 text-gold"></i> +54 9 11 0000-0000
+          </div>
+          <div class="flex items-center gap-3 text-muted">
+            <i data-lucide="mail" class="w-4 h-4 text-gold"></i> ventas@torrelumina.com.ar
+          </div>
+        </dl>
+      </div>
+
+      <form class="space-y-5" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Consulta enviada ✓';">
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div>
+            <label class="font-mono text-xs text-muted uppercase tracking-widest">Nombre</label>
+            <input type="text" required placeholder="Tu nombre completo"
+              class="mt-2 w-full rounded-lg bg-surface border border-hairline px-4 py-3 text-sm text-ink placeholder:text-muted/60 focus:border-gold transition-colors">
+          </div>
+          <div>
+            <label class="font-mono text-xs text-muted uppercase tracking-widest">Teléfono</label>
+            <input type="tel" required placeholder="+54 9 11 ...."
+              class="mt-2 w-full rounded-lg bg-surface border border-hairline px-4 py-3 text-sm text-ink placeholder:text-muted/60 focus:border-gold transition-colors">
+          </div>
+        </div>
+        <div>
+          <label class="font-mono text-xs text-muted uppercase tracking-widest">Email</label>
+          <input type="email" required placeholder="nombre@email.com"
+            class="mt-2 w-full rounded-lg bg-surface border border-hairline px-4 py-3 text-sm text-ink placeholder:text-muted/60 focus:border-gold transition-colors">
+        </div>
+        <div>
+          <label class="font-mono text-xs text-muted uppercase tracking-widest">Tipología de interés</label>
+          <select class="mt-2 w-full rounded-lg bg-surface border border-hairline px-4 py-3 text-sm text-ink focus:border-gold transition-colors">
+            <option>Monoambiente — 32 a 38 m²</option>
+            <option>2 Ambientes — 48 a 58 m²</option>
+            <option>3 Ambientes — 68 a 85 m²</option>
+            <option>Aún no lo sé</option>
+          </select>
+        </div>
+        <div>
+          <label class="font-mono text-xs text-muted uppercase tracking-widest">Mensaje</label>
+          <textarea rows="3" placeholder="Contanos qué estás buscando"
+            class="mt-2 w-full rounded-lg bg-surface border border-hairline px-4 py-3 text-sm text-ink placeholder:text-muted/60 focus:border-gold transition-colors resize-none"></textarea>
+        </div>
+        <button type="submit"
+          class="w-full rounded-lg bg-gold text-bg font-semibold py-4 hover:bg-goldbright transition-colors">
+          Enviar consulta
+        </button>
+      </form>
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-hairline flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-muted/70 font-mono">
+      <p>© 2026 Torre Lumina · Desarrollo inmobiliario en pozo</p>
+      <p>Unidades e imágenes ilustrativas, sujetas a plano final de obra.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+
+  // ---- Tabs (tipologías) ----
+  const tabButtons = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.plan-tab');
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabButtons.forEach(b => b.dataset.active = 'false');
+      panels.forEach(p => p.dataset.active = 'false');
+      btn.dataset.active = 'true';
+      document.querySelector(`.plan-tab[data-panel="${btn.dataset.tab}"]`).dataset.active = 'true';
+    });
+  });
+
+  // ---- Elevación: matriz de pisos ----
+  const STATUS = {
+    disponible: { color: 'bg-emerald', label: 'Disponible' },
+    reservado:  { color: 'bg-amber',   label: 'Reservado' },
+    vendido:    { color: 'bg-sold',    label: 'Vendido' },
+  };
+
+  // 12 pisos, unidades A–D. Pisos bajos con mayor % vendido (avance 40%).
+  const floors = [
+    { n: 12, units: ['disponible','disponible','reservado','disponible'] },
+    { n: 11, units: ['disponible','reservado','disponible','disponible'] },
+    { n: 10, units: ['reservado','disponible','disponible','reservado'] },
+    { n: 9,  units: ['disponible','disponible','reservado','disponible'] },
+    { n: 8,  units: ['reservado','disponible','reservado','disponible'] },
+    { n: 7,  units: ['disponible','reservado','reservado','disponible'] },
+    { n: 6,  units: ['reservado','vendido','disponible','reservado'] },
+    { n: 5,  units: ['vendido','reservado','vendido','disponible'] },
+    { n: 4,  units: ['vendido','vendido','reservado','vendido'] },
+    { n: 3,  units: ['vendido','vendido','vendido','reservado'] },
+    { n: 2,  units: ['vendido','vendido','vendido','vendido'] },
+    { n: 1,  units: ['vendido','vendido','vendido','vendido'] },
+  ];
+
+  const elevation = document.getElementById('elevation');
+  const letters = ['A','B','C','D'];
+
+  floors.forEach(floor => {
+    const row = document.createElement('div');
+    row.className = 'flex items-center gap-3';
+
+    const label = document.createElement('span');
+    label.className = 'font-mono text-[11px] text-muted w-9 shrink-0 text-right';
+    label.textContent = 'P' + floor.n;
+    row.appendChild(label);
+
+    const cells = document.createElement('div');
+    cells.className = 'flex-1 grid grid-cols-4 gap-1.5';
+
+    floor.units.forEach((status, i) => {
+      const cell = document.createElement('div');
+      const s = STATUS[status];
+      cell.className = `unit-cell ${s.color} h-6 md:h-7 rounded-[3px] cursor-pointer`;
+      cell.title = `Piso ${floor.n} · Unidad ${letters[i]} · ${s.label}`;
+      cells.appendChild(cell);
+    });
+
+    row.appendChild(cells);
+    elevation.appendChild(row);
+  });
+
+  // ---- Scroll reveal ----
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
