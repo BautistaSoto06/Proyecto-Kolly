@@ -49,7 +49,7 @@
     <a href="#hero" class="font-display text-lg tracking-wide text-ink">
       One Twenty <span class="text-gold">Signature</span>
     </a>
-    <nav class="hidden md:flex items-center gap-7 text-sm text-muted">
+    <nav class="hidden md:flex items-center gap-7 text-sm text-muted" aria-label="Navegación principal">
       <a href="#amenities" class="hover:text-ink transition-colors">Amenities</a>
       <a href="#renderdepa" class="hover:text-ink transition-colors">Interiores de Departamentos</a>
       <a href="#avance" class="hover:text-ink transition-colors">Avance de construcción</a>
@@ -58,13 +58,31 @@
       <a href="#equipo" class="hover:text-ink transition-colors">Equipo</a>
       <a href="#contacto" class="hover:text-ink transition-colors">Contacto</a>
     </nav>
-    <a href="https://wa.me/543795357543?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20One%20Twenty%20Signature"
-       target="_blank" rel="noopener"
-       class="inline-flex items-center gap-2 rounded-full bg-emerald text-bg text-sm font-semibold px-4 py-2 hover:bg-goldbright transition-colors">
-      <i data-lucide="message-circle" class="w-4 h-4"></i>
-      <span class="hidden sm:inline">WhatsApp</span>
-    </a>
+    <div class="flex items-center gap-2">
+      <a href="https://wa.me/543795357543?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20One%20Twenty%20Signature"
+         target="_blank" rel="noopener"
+         class="inline-flex items-center gap-2 rounded-full bg-emerald text-bg text-sm font-semibold px-4 py-2 hover:bg-goldbright transition-colors">
+        <i data-lucide="message-circle" class="w-4 h-4"></i>
+        <span class="hidden sm:inline">WhatsApp</span>
+      </a>
+      <button id="mobileMenuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu"
+              class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-hairline text-ink hover:border-gold hover:text-gold transition-colors">
+        <i data-lucide="menu" class="w-5 h-5" id="mobileMenuIconOpen"></i>
+        <i data-lucide="x" class="w-5 h-5 hidden" id="mobileMenuIconClose"></i>
+      </button>
+    </div>
   </div>
+  <nav id="mobileMenu" class="hidden md:hidden border-t border-hairline/70 bg-bg/95 backdrop-blur-md" aria-label="Navegación móvil">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col gap-4 text-sm text-muted">
+      <a href="#amenities" class="hover:text-ink transition-colors">Amenities</a>
+      <a href="#renderdepa" class="hover:text-ink transition-colors">Interiores de Departamentos</a>
+      <a href="#avance" class="hover:text-ink transition-colors">Avance de construcción</a>
+      <a href="#tipologias" class="hover:text-ink transition-colors">Unidades</a>
+      <a href="#elevacion" class="hover:text-ink transition-colors">¿Por qué invertir?</a>
+      <a href="#equipo" class="hover:text-ink transition-colors">Equipo</a>
+      <a href="#contacto" class="hover:text-ink transition-colors">Contacto</a>
+    </div>
+  </nav>
 </header>
 
 <!-- ============ HERO ============ -->
