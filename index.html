@@ -44,6 +44,8 @@
 
 
 <link rel="stylesheet" href="index.css">
+<!-- Leaflet CSS for Interactive Map -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 </head>
 
 <body class="font-body bg-bg text-ink antialiased">
@@ -62,6 +64,7 @@
       <a href="#renderdepa" class="hover:text-ink transition-colors">Interiores de Departamentos</a>
       <a href="#avance" class="hover:text-ink transition-colors">Avance de construcción</a>
       <a href="#tipologias" class="hover:text-ink transition-colors">Unidades</a>
+      <a href="#ubicacion" class="hover:text-ink transition-colors">Ubicación</a>
       <a href="#elevacion" class="hover:text-ink transition-colors">¿Por qué invertir?</a>
       <a href="#equipo" class="hover:text-ink transition-colors">Equipo</a>
       <a href="#contacto" class="hover:text-ink transition-colors">Contacto</a>
@@ -86,6 +89,7 @@
       <a href="#renderdepa" class="hover:text-ink transition-colors">Interiores de Departamentos</a>
       <a href="#avance" class="hover:text-ink transition-colors">Avance de construcción</a>
       <a href="#tipologias" class="hover:text-ink transition-colors">Unidades</a>
+      <a href="#ubicacion" class="hover:text-ink transition-colors">Ubicación</a>
       <a href="#elevacion" class="hover:text-ink transition-colors">¿Por qué invertir?</a>
       <a href="#equipo" class="hover:text-ink transition-colors">Equipo</a>
       <a href="#contacto" class="hover:text-ink transition-colors">Contacto</a>
@@ -382,6 +386,102 @@
     </div>
   </div>
 </section>
+
+
+<!-- ============ UBICACIÓN PRIVILEGIADA ============ -->
+<section id="ubicacion" class="border-t border-hairline bg-surface/20">
+  <div class="max-w-7xl mx-auto px-6 md:px-10 py-20 md:py-28">
+    <div class="reveal max-w-3xl mb-14">
+      <p class="eyebrow text-gold text-xs font-mono uppercase mb-4">Ubicación Privilegiada</p>
+      <h2 class="font-display text-3xl md:text-5xl font-light leading-tight mb-6">
+        Ubicación Imbatible en el <span class="italic text-gold">Corazón</span> de Brickell.
+      </h2>
+      <p class="text-muted leading-relaxed text-base md:text-lg">
+        Situado en la codiciada dirección de <strong class="text-ink font-semibold">120 SW 8th St</strong>, One Twenty Signature ofrece una conectividad sin precedentes y una alta plusvalía. A pasos de los centros financieros de clase mundial, restaurantes de alta gama y tiendas de lujo, este desarrollo redefine el concepto de vida sofisticada en Miami.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-12 gap-8 items-stretch">
+      <!-- Mapa Interactivo (7 de 12 columnas) -->
+      <div class="reveal lg:col-span-7 rounded-2xl border border-hairline overflow-hidden bg-surface relative min-h-[400px] lg:min-h-[500px] shadow-2xl hover:border-gold/40 transition-colors flex flex-col">
+        <!-- Leaflet Map Container -->
+        <div id="map" class="w-full flex-grow h-full min-h-[400px] z-10"></div>
+      </div>
+
+      <!-- Tarjetas de Puntos de Interés (5 de 12 columnas) -->
+      <div class="reveal lg:col-span-5 flex flex-col justify-between gap-4">
+        <!-- Tarjeta 1: Brickell City Centre -->
+        <div data-poi="bcc" class="poi-card group cursor-pointer rounded-2xl border border-hairline bg-surface p-5 hover:border-gold/60 hover:-translate-y-0.5 transition-all duration-300 flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-gold/10 border border-gold/25 flex items-center justify-center shrink-0 group-hover:bg-gold group-hover:text-bg transition-colors duration-300 text-gold">
+            <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          </div>
+          <div class="flex-grow">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="font-display text-lg text-ink group-hover:text-gold transition-colors">Brickell City Centre</h3>
+              <span class="font-mono text-xs text-gold bg-gold/10 px-2 py-0.5 rounded-full shrink-0">3 min a pie</span>
+            </div>
+            <p class="text-[10px] text-gold/80 font-mono mt-1 uppercase tracking-wider">Shopping & Luxury</p>
+            <p class="text-xs text-muted leading-relaxed mt-2">
+              El epicentro de la moda y estilo de vida de lujo en Miami, con marcas exclusivas y experiencias culinarias extraordinarias.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tarjeta 2: Mary Brickell Village -->
+        <div data-poi="mbv" class="poi-card group cursor-pointer rounded-2xl border border-hairline bg-surface p-5 hover:border-gold/60 hover:-translate-y-0.5 transition-all duration-300 flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-gold/10 border border-gold/25 flex items-center justify-center shrink-0 group-hover:bg-gold group-hover:text-bg transition-colors duration-300 text-gold">
+            <i data-lucide="utensils" class="w-5 h-5"></i>
+          </div>
+          <div class="flex-grow">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="font-display text-lg text-ink group-hover:text-gold transition-colors">Mary Brickell Village</h3>
+              <span class="font-mono text-xs text-gold bg-gold/10 px-2 py-0.5 rounded-full shrink-0">5 min a pie</span>
+            </div>
+            <p class="text-[10px] text-gold/80 font-mono mt-1 uppercase tracking-wider">Dining & Nightlife</p>
+            <p class="text-xs text-muted leading-relaxed mt-2">
+              Un oasis urbano vibrante repleto de restaurantes boutique, cafés al aire libre y una sofisticada vida nocturna.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tarjeta 3: Financial District -->
+        <div data-poi="fd" class="poi-card group cursor-pointer rounded-2xl border border-hairline bg-surface p-5 hover:border-gold/60 hover:-translate-y-0.5 transition-all duration-300 flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-gold/10 border border-gold/25 flex items-center justify-center shrink-0 group-hover:bg-gold group-hover:text-bg transition-colors duration-300 text-gold">
+            <i data-lucide="briefcase" class="w-5 h-5"></i>
+          </div>
+          <div class="flex-grow">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="font-display text-lg text-ink group-hover:text-gold transition-colors">Financial District</h3>
+              <span class="font-mono text-xs text-gold bg-gold/10 px-2 py-0.5 rounded-full shrink-0">2 min a pie</span>
+            </div>
+            <p class="text-[10px] text-gold/80 font-mono mt-1 uppercase tracking-wider">Oficinas Corporativas</p>
+            <p class="text-xs text-muted leading-relaxed mt-2">
+              El distrito financiero de Brickell, conocido como el "Wall Street del Sur", sede de las principales firmas financieras mundiales.
+            </p>
+          </div>
+        </div>
+
+        <!-- Tarjeta 4: Miami International Airport -->
+        <div data-poi="mia" class="poi-card group cursor-pointer rounded-2xl border border-hairline bg-surface p-5 hover:border-gold/60 hover:-translate-y-0.5 transition-all duration-300 flex items-start gap-4">
+          <div class="w-12 h-12 rounded-xl bg-gold/10 border border-gold/25 flex items-center justify-center shrink-0 group-hover:bg-gold group-hover:text-bg transition-colors duration-300 text-gold">
+            <i data-lucide="plane" class="w-5 h-5"></i>
+          </div>
+          <div class="flex-grow">
+            <div class="flex items-center justify-between gap-2">
+              <h3 class="font-display text-lg text-ink group-hover:text-gold transition-colors">Miami Int. Airport</h3>
+              <span class="font-mono text-xs text-gold bg-gold/10 px-2 py-0.5 rounded-full shrink-0">15 min en auto</span>
+            </div>
+            <p class="text-[10px] text-gold/80 font-mono mt-1 uppercase tracking-wider">Conectividad Global</p>
+            <p class="text-xs text-muted leading-relaxed mt-2">
+              Conexión directa y rápida hacia el principal aeropuerto internacional de Florida, ideal para inversores globales.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <!-- ============ AVANCE DE VENTA ============ -->
 <section id="avance" class="border-t border-hairline bg-surface/40">
@@ -935,6 +1035,8 @@
   </div>
 </footer>
 
+<!-- Leaflet JS for Interactive Map -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="one-twenty-signature.js"></script>
 
 </body>
