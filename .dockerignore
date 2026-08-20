@@ -1,0 +1,7 @@
+.git
+.github
+.codacy
+sonar-project.properties
+Dockerfile
+docker-compose.yml
+.dockerignore
